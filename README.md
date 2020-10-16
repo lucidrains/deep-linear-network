@@ -4,7 +4,31 @@
 
 A simple to use deep linear network module. Useful for matrix factorization or for passing an input tensor through a series of square weight matrices, where it was discovered that gradient descent implicitly regularizes the output to low-rank solutions.
 
-The module will take care of condensing the linear weight matrices into one weight matrix, to be cached across evaluation calls, but expired on training.
+The module will take care of collapsing the linear weight matrices into one weight matrix, caching it across evaluation calls (but expired on training).
+
+## Usage
+
+Matrix factorization
+
+```python
+import torch
+from deep_linear_network import DeepLinear
+
+x = torch.randn(1, 1024, 256)
+linear = DeepLinear(256, 10, 512)  # w1 (256 x 10) @ w2 (10 x 512)
+linear(x) # (1, 1024, 512)
+```
+
+Deep Linear Network
+
+```python
+import torch
+from deep_linear_network import DeepLinear
+
+x = torch.randn(1, 1024, 256)
+linear = DeepLinear(256, 256, 256, 256) # w1-w3 (256 x 256)
+linear(x) # (1, 1024, 256)
+```
 
 ## Citations
 
