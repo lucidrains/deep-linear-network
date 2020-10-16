@@ -6,6 +6,12 @@ A simple to use deep linear network module. Useful for matrix factorization or f
 
 The module will take care of collapsing the linear weight matrices into one weight matrix, caching it across evaluation calls (but expired on training).
 
+## Install
+
+```bash
+$ pip install deep-linear-network
+```
+
 ## Usage
 
 Matrix factorization
