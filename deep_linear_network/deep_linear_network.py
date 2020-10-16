@@ -2,6 +2,9 @@ import torch
 from torch import nn
 from functools import reduce
 
+def mm(x, y):
+    return x @ y
+
 class DeepLinear(nn.Module):
     def __init__(self, dim_in, *dims):
         super().__init__()
@@ -12,7 +15,14 @@ class DeepLinear(nn.Module):
         self._cache = None
 
     def forward(self, x):
+        if self.training:
+            self._cache = None
+            return reduce(mm, self.weights, x)
+
+        if self._cache is not None:
+            return x @ self._cache
+
         head, *tail = self.weights
-        weight = reduce(lambda x, y: x @ y, tail, head)
-        self._cache = None if self.training else weight
+        weight = reduce(mm, tail, head)
+        self._cache = weight
         return x @ weight
