@@ -1,6 +1,10 @@
-## Deep Linear Network - Pytorhc
+<img src="./diagram.png" width="500px"></img>
 
-A simple implementation of a deep linear Pytorch module
+## Deep Linear Network - Pytorch (wip)
+
+A simple to use deep linear network module. Useful for matrix factorization or for passing an input tensor through a series of square weight matrices, where it was discovered that gradient descent implicitly regularizes the output to low-rank solutions.
+
+The module will take care of condensing the linear weight matrices into one weight matrix, to be cached across evaluation calls, but expired on training.
 
 ## Citations
 
