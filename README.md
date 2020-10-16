@@ -4,6 +4,8 @@
 
 A simple to use deep linear network module. Useful for matrix factorization or for passing an input tensor through a series of square weight matrices, where it was discovered that gradient descent implicitly regularizes the output to low-rank solutions.
 
+LeCun's paper uses this unique property to optimize the latent of an autoencoder to be low-rank.
+
 The module will take care of collapsing the linear weight matrices into one weight matrix, caching it across evaluation calls (but expired on training).
 
 ## Install
